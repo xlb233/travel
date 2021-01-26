@@ -2,7 +2,7 @@
   <div>
     <div class="title">热销推荐</div>
     <ul>
-      <li class="item border-bottom" v-for="item of recommendList" :key="item.id">
+      <li class="item border-bottom" v-for="item of list" :key="item.id">
         <img class="item-img" :src="item.imgUrl">
         <div class="item-info">
           <p class="item-title">{{ item.title }}</p>
@@ -17,25 +17,8 @@
 <script>
 export default {
   name: 'HomeRecommend',
-  data () {
-    return {
-      recommendList: [{
-        id: '0001',
-        imgUrl: `http://img1.qunarzz.com/sight/p0/1410/23/8cf426aa573a841c41609aeaafa26fc7.jpg_200x200_aff8290b.jpg`,
-        title: '汉拿山汤泉国际酒店（亚运村店）',
-        desc: '带来浓郁的温泉洗浴文化和超值的精神享受'
-      }, {
-        id: '0002',
-        imgUrl: `http://img1.qunarzz.com/sight/p0/2012/a3/a308c49c32b9084ba3.img.jpg_200x200_491cc4d7.jpg`,
-        title: '渔阳滑雪场',
-        desc: '带来浓郁的滑雪文化和超值的滑雪享受'
-      }, {
-        id: '0003',
-        imgUrl: `http://img1.qunarzz.com/sight/p0/2010/ea/ea45e52a4e22851ca3.img.jpg_200x200_df8ffdaf.jpg`,
-        title: '北京欢乐谷',
-        desc: '带来浓郁的欢乐文化和超值的欢乐享受'
-      }]
-    }
+  props: {
+    list: Array
   }
 }
 </script>
