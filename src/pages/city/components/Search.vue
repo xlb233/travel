@@ -14,10 +14,11 @@
           class="search-item border-bottom"
           v-for="item of list"
           :key="item.id"
+          @click="handleCityClick(item.name)"
         >
           {{item.name}}
         </li>
-        <li class="search-item border-bottom" v-show="hasRes">
+        <li class="search-item border-bottom" v-show="noRes">
           没有找到数据
         </li>
       </ul>
@@ -26,6 +27,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 import Bscroll from 'better-scroll'
 export default {
   name: 'CitySearch',
@@ -34,8 +36,15 @@ export default {
       keyword: '',
       list: [],
       timer: null,
-      hasRes: false
+      noRes: false
     }
+  },
+  methods: {
+    handleCityClick (city) {
+      this.changeCity(city)
+      this.$router.push('/')
+    },
+    ...mapMutations(['changeCity'])
   },
   props: {
     cities: Object
@@ -53,7 +62,7 @@ export default {
       }
       if (!this.keyword) {
         this.list = []
-        this.hasRes = false
+        this.noRes = true
         return
       }
       this.timer = setTimeout(() => {
@@ -67,8 +76,9 @@ export default {
           })
         }
         this.list = result
+        this.noRes = true
         if (result.length > 0) {
-          this.hasRes = true
+          this.noRes = false
         }
       }, 100)
     }
