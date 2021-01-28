@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import HomeHeader from './components/Header'
+// 同步组件
 import HomeSwiper from './components/Swiper'
 import HomeIcons from './components/Icons'
 import HomeRecommend from './components/Recommend'
@@ -19,7 +19,8 @@ import { mapState } from 'vuex'
 export default {
   name: 'Home',
   components: {
-    HomeHeader,
+    // 异步组件，按需加载
+    HomeHeader: () => import('./components/Header'),
     HomeSwiper,
     HomeIcons,
     HomeRecommend,
