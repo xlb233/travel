@@ -45,11 +45,14 @@ export default {
       } else {
         this.showAbs = true
       }
-      console.log(document.documentElement.scrollTop)
     }
   },
   activated () {
     window.addEventListener('scroll', this.handleScroll)
+  },
+  // 解绑全局事件
+  deactivated () {
+    window.removeEventListener('scroll', this.handleScroll)
   }
 }
 </script>
